@@ -1,9 +1,5 @@
 import React from 'react'
 import {
-    DropdownItem,
-    Brand,
-    PageHeader,
-    Avatar,
     Page,
     PageSection,
     Text,
@@ -14,7 +10,7 @@ import Sidebar from './Sidebar'
 import Header from './Header'
 import { global_breakpoint_md as breakpointMd } from '@patternfly/react-tokens'
 
-class Navbar extends React.Component {
+class Navigation extends React.Component {
     constructor(props) {
         super(props)
         const isNavOpen = typeof window != 'undefined' && window.innerWidth >= parseInt(breakpointMd.value, 10)
@@ -62,4 +58,4 @@ class Navbar extends React.Component {
     }
 }
 
-export default Navbar
+export default Navigation

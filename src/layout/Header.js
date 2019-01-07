@@ -7,7 +7,6 @@ import avatarImg from './img_avatar.svg';
 class Header extends Component {
     constructor(props) {
         super(props)
-        console.log(props)
         this.state = {
             isNavOpen: props.isNavOpen
         }
