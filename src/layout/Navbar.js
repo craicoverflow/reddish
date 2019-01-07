@@ -23,6 +23,7 @@ import {
     PageSectionVariants,
     TextContent
 } from '@patternfly/react-core'
+import Sidebar from './Sidebar'
 import { global_breakpoint_md as breakpointMd } from '@patternfly/react-tokens'
 // make sure you've installed @patternfly/patternfly-next
 import accessibleStyles from '@patternfly/patternfly-next/utilities/Accessibility/accessibility.css';
@@ -38,8 +39,7 @@ class Navbar extends React.Component {
         const isNavOpen = typeof window != 'undefined' && window.innerWidth >= parseInt(breakpointMd.value, 10)
         this.state = {
             isDropdownOpen: false,
-            isebabDropdownOpen: false,
-            activeItem: 0,
+            isKebabDropdownOpen: false,
             isNavOpen
         }
     }
@@ -54,7 +54,7 @@ class Navbar extends React.Component {
         this.setState({
             isDropdownOpen: !this.state.isDropdownOpen
         });
-    };
+    }
 
     onKebabDropdownToggle = isKebabDropdownOpen => {
         this.setState({
@@ -68,20 +68,20 @@ class Navbar extends React.Component {
         });
     };
 
+    onNavToggle = () => {
+        this.setState({
+            isNavOpen: !this.state.isNavOpen
+        })
+    }
+
     onNavSelect = result => {
         this.setState({
             activeItem: result.itemId
         });
     };
 
-    onNavToggle = () => {
-        this.setState({
-            isNavOpen: !this.state.isNavOpen
-        });
-    };
-
     render() {
-        const { isDropdownOpen, isKebabDropdownOpen, activeItem, isNavOpen } = this.state
+        const { isNavOpen, isDropdownOpen, isKebabDropdownOpen, activeItem } = this.state
 
         const PageNav = (
             <Nav onSelect={this.onNavSelect} aria-label="Nav">
@@ -145,9 +145,9 @@ class Navbar extends React.Component {
             </Toolbar>
         )
 
-        const Header = (
+        const header = (
             <PageHeader
-                style={{backgroundColor: '#cc0000'}}
+                style={{ backgroundColor: '#cc0000' }}
                 logo={<Brand src={brandImg} alt="Patternfly Logo" />}
                 avatar={<Avatar src={avatarImg} alt="Avatar image" />}
                 showNavToggle
@@ -156,11 +156,11 @@ class Navbar extends React.Component {
             />
         )
 
-        const Sidebar = <PageSidebar nav={PageNav} isNavOpen={isNavOpen} />
+        const sideBar = <Sidebar isNavOpen={isNavOpen} />
 
         return (
             <React.Fragment>
-                <Page header={Header} sidebar={Sidebar}>
+                <Page header={header} sidebar={sideBar}>
                     <PageSection variant={PageSectionVariants.light}>
                         <TextContent>
                             <Text component="h1">Main Title</Text>
