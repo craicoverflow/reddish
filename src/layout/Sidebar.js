@@ -1,45 +1,9 @@
 import React from 'react'
 import { PageSidebar, Nav, NavItem, NavList } from '@patternfly/react-core';
-import { global_breakpoint_md as breakpointMd } from '@patternfly/react-tokens'
 
 class Sidebar extends React.Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            activeItem: 0,
-        }
-    }
-
-    onDropdownToggle = isDropdownOpen => {
-        this.setState({
-            isDropdownOpen
-        });
-    };
-
-    onDropdownSelect = event => {
-        this.setState({
-            isDropdownOpen: !this.state.isDropdownOpen
-        });
-    };
-
-    onKebabDropdownToggle = isKebabDropdownOpen => {
-        this.setState({
-            isKebabDropdownOpen
-        });
-    };
-
-    onKebabDropdownSelect = event => {
-        this.setState({
-            isKebabDropdownOpen: !this.state.isKebabDropdownOpen
-        });
-    };
-
-
     render() {
-        const { activeItem } = this.state
-        const { isNavOpen } = this.props
-
+        const { isNavOpen, activeItem } = this.props
 
         const SideNav = (
             <Nav onSelect={this.onNavSelect} aria-label="Nav">

@@ -16,8 +16,6 @@ import {
     PageHeader,
     Avatar,
     Page,
-    PageSidebar,
-    BackgroundImage,
     PageSection,
     Text,
     PageSectionVariants,
@@ -25,7 +23,6 @@ import {
 } from '@patternfly/react-core'
 import Sidebar from './Sidebar'
 import { global_breakpoint_md as breakpointMd } from '@patternfly/react-tokens'
-// make sure you've installed @patternfly/patternfly-next
 import accessibleStyles from '@patternfly/patternfly-next/utilities/Accessibility/accessibility.css';
 import spacingStyles from '@patternfly/patternfly-next/utilities/Spacing/spacing.css';
 import { css } from '@patternfly/react-styles';
@@ -40,7 +37,8 @@ class Navbar extends React.Component {
         this.state = {
             isDropdownOpen: false,
             isKebabDropdownOpen: false,
-            isNavOpen
+            isNavOpen,
+            activeItem: 0
         }
     }
 
@@ -82,19 +80,6 @@ class Navbar extends React.Component {
 
     render() {
         const { isNavOpen, isDropdownOpen, isKebabDropdownOpen, activeItem } = this.state
-
-        const PageNav = (
-            <Nav onSelect={this.onNavSelect} aria-label="Nav">
-                <NavList>
-                    <NavItem to="#nav-link1" itemId={0} isActive={activeItem === 0}>
-                        System Panel
-                    </NavItem>
-                    <NavItem to="#nav-link1" itemId={0} isActive={activeItem === 0}>
-                        System Panel
-                    </NavItem>
-                </NavList>
-            </Nav>
-        )
 
         const kebabDropdownItems = [
             <DropdownItem>
@@ -156,7 +141,7 @@ class Navbar extends React.Component {
             />
         )
 
-        const sideBar = <Sidebar isNavOpen={isNavOpen} />
+        const sideBar = <Sidebar isNavOpen={isNavOpen} activeItem={activeItem} />
 
         return (
             <React.Fragment>
