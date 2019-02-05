@@ -18,7 +18,7 @@ class Navigation extends React.Component {
             isDropdownOpen: false,
             isKebabDropdownOpen: false,
             isNavOpen,
-            activeItem: 0
+            activeItem: "/r/AskReddit"
         }
 
     }
@@ -30,6 +30,7 @@ class Navigation extends React.Component {
     }
 
     onNavSelect = result => {
+        console.log(result.itemId)
         this.setState({
             activeItem: result.itemId
         });
